@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pokemon.pokedex.entity.Pokemon;
 import com.pokemon.pokedex.entity.Tipo;
+import com.pokemon.pokedex.responses.PokemonByTypeResponse;
 import com.pokemon.pokedex.service.IPokemonService;
 import com.pokemon.pokedex.service.ITipoService;
 
@@ -93,15 +94,15 @@ public class PokemonController {
 
 	@GetMapping("/tipo/{nombre}")
 	public ResponseEntity<?> typeByName(@PathVariable("nombre") String nombre) {
-		
+
 		Map<String, Object> response = new HashMap<>();
 		Tipo tipo = null;
-		
+
 		try {
 			tipo = tipoService.findByNombre(nombre);
-			
-			if(tipo == null) {
-				response.put("message", "No existe el tipo: "+nombre);
+
+			if (tipo == null) {
+				response.put("message", "No existe el tipo: " + nombre);
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 			}
 		} catch (DataAccessException e) {
@@ -111,9 +112,54 @@ public class PokemonController {
 			response.put("error", "The service is not available");
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 		return new ResponseEntity<Tipo>(tipo, HttpStatus.OK);
 
+	}
+
+	@GetMapping("/tipo/pokemonByType/{nombre}")
+	public ResponseEntity<?> getPokemonsByType(@PathVariable("nombre") String nombre) {
+
+		Map<String, Object> response = new HashMap<>();
+		Tipo tipo = new Tipo();
+		List<Pokemon> listaPokemon = new ArrayList<>();
+		PokemonByTypeResponse responsePokemon = new PokemonByTypeResponse();
+
+		try {
+
+			tipo = tipoService.findByNombre(nombre);
+
+			if (tipo == null) {
+				response.put("message", "No existe el tipo: " + nombre);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+			} else {
+				listaPokemon = setListaPokemon(tipoService.findByTipo(nombre));
+			}
+
+			responsePokemon.setTipo(tipo);
+			responsePokemon.setListaPokemon(listaPokemon);
+
+		} catch (DataAccessException e) {
+			response.put("error", "We ran into a problem trying to access the database");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Error e) {
+			response.put("error", "The service is not available");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<PokemonByTypeResponse>(responsePokemon, HttpStatus.OK);
+
+	}
+
+	private List<Pokemon> setListaPokemon(List<Pokemon> listaPokemon) {
+
+		List<Pokemon> listaFinal = new ArrayList<>();
+
+		for (Pokemon indice : listaPokemon) {
+			listaFinal.add(indice);
+		}
+
+		return listaFinal;
 	}
 
 }
