@@ -1,7 +1,6 @@
 package com.pokemon.pokedex.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ public class Pokemon {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int NumeroPokedex;
+	private int numeroPokedex;
 	
 	private String nombre;
 	
@@ -28,23 +27,12 @@ public class Pokemon {
 	
 	private Double altura;
 	
-	@JoinTable(
-			name = "tipo",
-			joinColumns = @JoinColumn(name = "numero_pokedex", nullable = false),
-			inverseJoinColumns = @JoinColumn(name = "numero_pokedex", nullable = false)
-	)
 	@ManyToMany
-	private List<Tipo> tipos;
-	
-	public void addTipo(Tipo tipo) {
-		
-		if(this.tipos == null) {
-			this.tipos = new ArrayList<>();
-			
-		}
-		
-		this.tipos.add(tipo);
-		
-		}
+	@JoinTable(
+			name = "pokemon_tipo",
+			joinColumns = @JoinColumn(name = "numero_pokedex", nullable = false),
+			inverseJoinColumns = @JoinColumn(name = "id_tipo", nullable = false)
+	)
+	Set<Tipo> idTipo;
 
 }

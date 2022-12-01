@@ -1,6 +1,6 @@
 package com.pokemon.pokedex.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,13 +17,13 @@ public class Tipo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int IdTipo;
+	private int idTipo;
 	
 	private String nombre;
 	
-	private int IdTipoAtaque;
+	private int idTipoAtaque;
 	
-	@ManyToMany(mappedBy = "pokemon")
-	private List<Pokemon> pokemons;
+	@ManyToMany(mappedBy = "idTipo")
+	Set<Pokemon> numeroPokedex;
 
 }
