@@ -1,6 +1,6 @@
 package com.pokemon.pokedex.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +33,6 @@ public class Pokemon {
 			joinColumns = @JoinColumn(name = "numero_pokedex", nullable = false),
 			inverseJoinColumns = @JoinColumn(name = "id_tipo", nullable = false)
 	)
-	Set<Tipo> idTipo;
+	List<Tipo> tipos;
 
 }

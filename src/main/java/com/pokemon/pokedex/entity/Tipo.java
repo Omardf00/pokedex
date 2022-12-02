@@ -1,12 +1,9 @@
 package com.pokemon.pokedex.entity;
 
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -22,8 +19,5 @@ public class Tipo {
 	private String nombre;
 	
 	private int idTipoAtaque;
-	
-	@ManyToMany(mappedBy = "idTipo")
-	Set<Pokemon> numeroPokedex;
 
 }

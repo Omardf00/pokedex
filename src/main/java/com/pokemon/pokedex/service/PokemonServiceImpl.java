@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pokemon.pokedex.dao.IPokemonDao;
 import com.pokemon.pokedex.entity.Pokemon;
+import com.pokemon.pokedex.entity.Tipo;
 
 @Service
 public class PokemonServiceImpl implements IPokemonService{
@@ -22,7 +23,11 @@ public class PokemonServiceImpl implements IPokemonService{
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	public List<Pokemon> findByTipos(Tipo tipo) {
+		return dao.findByTipos(tipo);
+	}
+
+	@Override
 	public Pokemon findByNombre(String nombre) {
 		return dao.findByNombre(nombre);
 	}

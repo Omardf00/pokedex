@@ -132,10 +132,10 @@ public class PokemonController {
 			if (tipo == null) {
 				response.put("message", "No existe el tipo: " + nombre);
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
-			} else {
-				listaPokemon = setListaPokemon(tipoService.findByTipo(nombre));
 			}
-
+			
+			listaPokemon = pokemonService.findByTipos(tipo);
+			
 			responsePokemon.setTipo(tipo);
 			responsePokemon.setListaPokemon(listaPokemon);
 
@@ -149,17 +149,6 @@ public class PokemonController {
 
 		return new ResponseEntity<PokemonByTypeResponse>(responsePokemon, HttpStatus.OK);
 
-	}
-
-	private List<Pokemon> setListaPokemon(List<Pokemon> listaPokemon) {
-
-		List<Pokemon> listaFinal = new ArrayList<>();
-
-		for (Pokemon indice : listaPokemon) {
-			listaFinal.add(indice);
-		}
-
-		return listaFinal;
 	}
 
 }
