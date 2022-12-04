@@ -33,4 +33,9 @@ public class MovimientoServiceImpl implements IMovimientoService{
 		return dao.findByPp(pp);
 	}
 
+	@Override
+	public List<Movimiento> findByPotencia(Integer potencia) {
+		return dao.findByPotencia(potencia);
+	}
+
 }

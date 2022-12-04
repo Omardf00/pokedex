@@ -82,4 +82,22 @@ public class MovimientoController {
 
 		return new ResponseEntity<List<Movimiento>>(movimientos, HttpStatus.OK);
 	}
+
+	@GetMapping("/potencia/{potencia}")
+	public ResponseEntity<?> getMovimientoByPotencia(@PathVariable("potencia") Integer potencia) {
+		Map<String, Object> response = new HashMap<>();
+		List<Movimiento> movimientos;
+
+		try {
+			movimientos = movimientoService.findByPotencia(potencia);
+		} catch (DataAccessException e) {
+			response.put("error", "We ran into a problem trying to access the database");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Error e) {
+			response.put("error", "The service is not available");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<List<Movimiento>>(movimientos, HttpStatus.OK);
+	}
 }

@@ -11,4 +11,6 @@ public interface IMovimientoService {
     public Movimiento findByNombre(String nombreMovimiento);
 
     List<Movimiento> findByPp(Integer pp);
+
+    List<Movimiento> findByPotencia(Integer potencia);
 }
