@@ -9,4 +9,6 @@ public interface IMovimientoService {
     public List<Movimiento> findAll();
 
     public Movimiento findByNombre(String nombreMovimiento);
+
+    List<Movimiento> findByPp(Integer pp);
 }

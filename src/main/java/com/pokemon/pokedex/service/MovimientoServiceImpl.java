@@ -28,4 +28,9 @@ public class MovimientoServiceImpl implements IMovimientoService{
 		return dao.findByNombre(nombreMovimiento);
 	}
 
+	@Override
+	public List<Movimiento> findByPp(Integer pp) {
+		return dao.findByPp(pp);
+	}
+
 }

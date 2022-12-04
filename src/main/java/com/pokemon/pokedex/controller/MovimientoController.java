@@ -64,4 +64,22 @@ public class MovimientoController {
 
 		return new ResponseEntity<Movimiento>(movimiento, HttpStatus.OK);
 	}
+
+	@GetMapping("/pps/{pp}")
+	public ResponseEntity<?> getMovimientoByPP(@PathVariable("pp") Integer pp) {
+		Map<String, Object> response = new HashMap<>();
+		List<Movimiento> movimientos;
+
+		try {
+			movimientos = movimientoService.findByPp(pp);
+		} catch (DataAccessException e) {
+			response.put("error", "We ran into a problem trying to access the database");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Error e) {
+			response.put("error", "The service is not available");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<List<Movimiento>>(movimientos, HttpStatus.OK);
+	}
 }
