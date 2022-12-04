@@ -1,10 +1,6 @@
 package com.pokemon.pokedex.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -17,7 +13,9 @@ public class Tipo {
 	private int idTipo;
 	
 	private String nombre;
-	
-	private int idTipoAtaque;
+
+	@OneToOne
+	@JoinColumn(name = "id_tipo_ataque")
+	private TipoAtaque tipoAtaque;
 
 }

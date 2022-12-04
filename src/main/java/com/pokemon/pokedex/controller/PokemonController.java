@@ -21,7 +21,7 @@ import com.pokemon.pokedex.service.IPokemonService;
 import com.pokemon.pokedex.service.ITipoService;
 
 @RestController
-@RequestMapping("/api/v1/pokedex")
+@RequestMapping("/api/v1/pokedex/pokemon")
 public class PokemonController {
 
 	@Autowired
@@ -30,7 +30,7 @@ public class PokemonController {
 	@Autowired
 	ITipoService tipoService;
 
-	@GetMapping("/pokemon")
+	@GetMapping("")
 	public ResponseEntity<?> listPokemons() {
 
 		Map<String, Object> response = new HashMap<>();
@@ -49,7 +49,7 @@ public class PokemonController {
 		return new ResponseEntity<List<Pokemon>>(lista, HttpStatus.OK);
 	}
 
-	@GetMapping("/pokemon/{nombre}")
+	@GetMapping("/{nombre}")
 	public ResponseEntity<?> pokemonByName(@PathVariable("nombre") String nombre) {
 
 		Map<String, Object> response = new HashMap<>();
@@ -71,53 +71,9 @@ public class PokemonController {
 		}
 
 		return new ResponseEntity<Pokemon>(pokemon, HttpStatus.OK);
-
 	}
 
-	@GetMapping("/tipo")
-	public ResponseEntity<?> listTypes() {
-		Map<String, Object> response = new HashMap<>();
-		List<Tipo> lista = new ArrayList<>();
-
-		try {
-			lista = tipoService.findAll();
-		} catch (DataAccessException e) {
-			response.put("error", "We ran into a problem trying to access the database");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		} catch (Error e) {
-			response.put("error", "The service is not available");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-
-		return new ResponseEntity<List<Tipo>>(lista, HttpStatus.OK);
-	}
-
-	@GetMapping("/tipo/{nombre}")
-	public ResponseEntity<?> typeByName(@PathVariable("nombre") String nombre) {
-
-		Map<String, Object> response = new HashMap<>();
-		Tipo tipo = null;
-
-		try {
-			tipo = tipoService.findByNombre(nombre);
-
-			if (tipo == null) {
-				response.put("message", "No existe el tipo: " + nombre);
-				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
-			}
-		} catch (DataAccessException e) {
-			response.put("error", "We ran into a problem trying to access the database");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		} catch (Error e) {
-			response.put("error", "The service is not available");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-
-		return new ResponseEntity<Tipo>(tipo, HttpStatus.OK);
-
-	}
-
-	@GetMapping("/tipo/pokemonByType/{nombre}")
+	@GetMapping("/pokemonByType/{nombre}")
 	public ResponseEntity<?> getPokemonsByType(@PathVariable("nombre") String nombre) {
 
 		Map<String, Object> response = new HashMap<>();
@@ -133,9 +89,9 @@ public class PokemonController {
 				response.put("message", "No existe el tipo: " + nombre);
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 			}
-			
+
 			listaPokemon = pokemonService.findByTipos(tipo);
-			
+
 			responsePokemon.setTipo(tipo);
 			responsePokemon.setListaPokemon(listaPokemon);
 
@@ -148,7 +104,5 @@ public class PokemonController {
 		}
 
 		return new ResponseEntity<PokemonByTypeResponse>(responsePokemon, HttpStatus.OK);
-
 	}
-
 }
