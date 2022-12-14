@@ -15,7 +15,8 @@ public class Movimiento {
 
     Integer potencia;
 
-    Integer precisionMov;
+    @Column(name = "precision_mov")
+    Integer precision;
 
     String descripcion;
 

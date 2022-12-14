@@ -1,10 +1,7 @@
 package com.pokemon.pokedex.service;
 
 import com.pokemon.pokedex.dao.IMovimientoDao;
-import com.pokemon.pokedex.dao.IPokemonDao;
 import com.pokemon.pokedex.entity.Movimiento;
-import com.pokemon.pokedex.entity.Pokemon;
-import com.pokemon.pokedex.entity.Tipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,30 +9,35 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class MovimientoServiceImpl implements IMovimientoService{
-	
-	@Autowired
-	IMovimientoDao dao;
+public class MovimientoServiceImpl implements IMovimientoService {
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Movimiento> findAll() {
-		return (List<Movimiento>) dao.findAll();
-	}
+    @Autowired
+    IMovimientoDao dao;
 
-	@Override
-	public Movimiento findByNombre(String nombreMovimiento) {
-		return dao.findByNombre(nombreMovimiento);
-	}
+    @Override
+    @Transactional(readOnly = true)
+    public List<Movimiento> findAll() {
+        return (List<Movimiento>) dao.findAll();
+    }
 
-	@Override
-	public List<Movimiento> findByPp(Integer pp) {
-		return dao.findByPp(pp);
-	}
+    @Override
+    public Movimiento findByNombre(String nombreMovimiento) {
+        return dao.findByNombre(nombreMovimiento);
+    }
 
-	@Override
-	public List<Movimiento> findByPotencia(Integer potencia) {
-		return dao.findByPotencia(potencia);
-	}
+    @Override
+    public List<Movimiento> findByPp(Integer pp) {
+        return dao.findByPp(pp);
+    }
+
+    @Override
+    public List<Movimiento> findByPotencia(Integer potencia) {
+        return dao.findByPotencia(potencia);
+    }
+
+    @Override
+    public List<Movimiento> findByPrecision(Integer precision) {
+        return dao.findByPrecision(precision);
+    }
 
 }

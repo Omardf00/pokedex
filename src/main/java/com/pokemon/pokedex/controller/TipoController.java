@@ -1,9 +1,6 @@
 package com.pokemon.pokedex.controller;
 
-import com.pokemon.pokedex.entity.Pokemon;
 import com.pokemon.pokedex.entity.Tipo;
-import com.pokemon.pokedex.responses.PokemonByTypeResponse;
-import com.pokemon.pokedex.service.IPokemonService;
 import com.pokemon.pokedex.service.ITipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

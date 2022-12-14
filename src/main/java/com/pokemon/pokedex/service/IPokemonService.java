@@ -1,9 +1,9 @@
 package com.pokemon.pokedex.service;
 
-import java.util.List;
-
 import com.pokemon.pokedex.entity.Pokemon;
 import com.pokemon.pokedex.entity.Tipo;
+
+import java.util.List;
 
 public interface IPokemonService {
 	

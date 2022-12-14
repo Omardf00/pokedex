@@ -1,11 +1,10 @@
 package com.pokemon.pokedex.responses;
 
-import java.util.List;
-
 import com.pokemon.pokedex.entity.Pokemon;
 import com.pokemon.pokedex.entity.Tipo;
-
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class PokemonByTypeResponse {

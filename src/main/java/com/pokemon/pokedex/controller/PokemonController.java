@@ -1,10 +1,10 @@
 package com.pokemon.pokedex.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.pokemon.pokedex.entity.Pokemon;
+import com.pokemon.pokedex.entity.Tipo;
+import com.pokemon.pokedex.responses.PokemonByTypeResponse;
+import com.pokemon.pokedex.service.IPokemonService;
+import com.pokemon.pokedex.service.ITipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pokemon.pokedex.entity.Pokemon;
-import com.pokemon.pokedex.entity.Tipo;
-import com.pokemon.pokedex.responses.PokemonByTypeResponse;
-import com.pokemon.pokedex.service.IPokemonService;
-import com.pokemon.pokedex.service.ITipoService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/pokedex/pokemon")

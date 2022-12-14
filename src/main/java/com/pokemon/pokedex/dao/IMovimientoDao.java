@@ -12,4 +12,6 @@ public interface IMovimientoDao extends CrudRepository<Movimiento, Integer>{
     List<Movimiento> findByPp(Integer pp);
 
     List<Movimiento> findByPotencia(Integer potencia);
+
+    List<Movimiento> findByPrecision(Integer precision);
 }

@@ -13,4 +13,6 @@ public interface IMovimientoService {
     List<Movimiento> findByPp(Integer pp);
 
     List<Movimiento> findByPotencia(Integer potencia);
+
+    List<Movimiento> findByPrecision(Integer precision);
 }

@@ -1,12 +1,11 @@
 package com.pokemon.pokedex.service;
 
-import java.util.List;
-
+import com.pokemon.pokedex.dao.ITipoDao;
+import com.pokemon.pokedex.entity.Tipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pokemon.pokedex.dao.ITipoDao;
-import com.pokemon.pokedex.entity.Tipo;
+import java.util.List;
 
 @Service
 public class TipoServiceImpl implements ITipoService {

@@ -1,8 +1,7 @@
 package com.pokemon.pokedex.dao;
 
-import org.springframework.data.repository.CrudRepository;
-
 import com.pokemon.pokedex.entity.Tipo;
+import org.springframework.data.repository.CrudRepository;
 
 public interface ITipoDao extends CrudRepository<Tipo, Integer>{
 	
