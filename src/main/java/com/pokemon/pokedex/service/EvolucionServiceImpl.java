@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.pokemon.pokedex.dao.IEvolucionDao;
 import com.pokemon.pokedex.entity.EvolucionaDe;
+import com.pokemon.pokedex.entity.Pokemon;
 
 @Service
 public class EvolucionServiceImpl implements IEvolucionService{
@@ -13,8 +14,8 @@ public class EvolucionServiceImpl implements IEvolucionService{
 	IEvolucionDao dao;
 
 	@Override
-	public EvolucionaDe findEvolutionByIdPokemon(int idPokemon) {
-		return dao.findById(idPokemon);
+	public EvolucionaDe findEvolutionByIdPokemon(Pokemon pokemon) {
+		return dao.findByPokemonOrigen(pokemon);
 	}
 
 }

@@ -22,7 +22,7 @@ import com.pokemon.pokedex.service.IPokemonService;
 public class EvolucionController {
 	
 	@Autowired
-	IEvolucionService evolucioService;
+	IEvolucionService evolucionService;
 	
 	@Autowired
 	IPokemonService pokemonService;
@@ -43,7 +43,7 @@ public class EvolucionController {
 				return new ResponseEntity<Map<String, Object>>(response,HttpStatus.BAD_REQUEST);
 			}
 			
-			evolucionaDe = evolucioService.findEvolutionByIdPokemon(pokemon.getNumeroPokedex());
+			evolucionaDe = evolucionService.findEvolutionByIdPokemon(pokemon.getNumeroPokedex());
 			
 		} catch (DataAccessException e) {
 			response.put("error", "We ran into a problem trying to access the database");
